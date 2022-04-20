@@ -3,9 +3,9 @@ include_once '<Setings/autoload.php';
 
 /* Heredamos la clase conexion */
 class tasks extends conexion{
-    /* Defino las propiedades de mi clase, en este caso son el titulo,
+    /* Defino las propiedades de mi clase, en este caso son el clase,
        la descripcion y la hora de incio */
-    private $strtitulo;
+    private $strclase;
     private $strdescripcion;
     private $strhoraInicio;
     private $conexion;
@@ -28,23 +28,25 @@ class tasks extends conexion{
     public function validarUpdate(){
         if(isset($_POST['guardar_datos'])){
             $obj = new tasks();
-            $titulo = $_POST['titulo'];
-            $descripcion = $_POST['description'];
-            $horaInicio = $_POST['time'];
-            $obj->updateTask($titulo, $descripcion, $horaInicio);
+            $clase = $_POST['clase'];
+            $bootcamp = $_POST['bootcamp'];
+            $horaInicio = $_POST['time1'];
+            $horaFinalizacion = $_POST['time2'];
+            $obj->updateTask($clase, $bootcamp, $horaInicio, $horaFinalizacion);
         
         }
     }
 
     /* Funcion para Guardar datos en la tabla */
-    public function updateTask(string $titulo, string $descripcion, string $horaInicio){
-        $this->strtitulo = $titulo;
-        $this->strdescripcion = $descripcion;
+    public function updateTask(string $clase, string $bootcamp, string $horaInicio, string $horaFinalizacion){
+        $this->strclase = $clase;
+        $this->strbootcamp = $bootcamp;
         $this->strhoraInicio = $horaInicio;
+        $this->strhoraFinalizacion = $horaFinalizacion;
 
-        $sql = "INSERT INTO tasks(titulo, descripcion, horaInicio) VALUES (?,?,?)";
+        $sql = "INSERT INTO tasks(clase, bootcamp, horaInicio, horaFinalizacion) VALUES (?,?,?,?)";
         $insert = $this->conexion->prepare($sql);
-        $arrData = array($this->strtitulo, $this->strdescripcion, $this->strhoraInicio);
+        $arrData = array($this->strclase, $this->strbootcamp, $this->strhoraInicio, $this->strhoraFinalizacion);
         $resInsert = $insert->execute($arrData);
     }
     
@@ -53,23 +55,25 @@ class tasks extends conexion{
         if(isset($_POST['editar_datos'])){
             $obj = new tasks();
             $id = $_GET['id'];
-            $titulo = $_POST['titulo'];
-            $descripcion = $_POST['descripcion'];
-            $horaInicio = $_POST['time'];
-            $obj->editTask($id, $titulo, $descripcion, $horaInicio);
+            $clase = $_POST['clase'];
+            $bootcamp = $_POST['bootcamp'];
+            $horaInicio = $_POST['time1'];
+            $horaFinalizacion = $_POST['time2'];
+            $obj->editTask($id, $clase, $bootcamp, $horaInicio, $horaFinalizacion);
         
         }
     }
 
     /* Funcion para Editar tareas */
-    public function editTask(int $id, string $titulo, string $descripcion, string $horaInicio){
-        $this->strtitulo = $titulo;
-        $this->strdescripcion = $descripcion;
+    public function editTask(int $id, string $clase, string $bootcamp, string $horaInicio, string $horaFinalizacion){
+        $this->strclase = $clase;
+        $this->strdescripcion = $bootcamp;
         $this->strhoraInicio = $horaInicio;
+        $this->strhoraFinalizacion= $horaFinalizacion;
 
-        $sql = 'UPDATE tasks SET titulo = ?, descripcion = ?, horaInicio = ? WHERE id = ?';
+        $sql = 'UPDATE tasks SET clase = ?, bootcamp = ?, horaInicio = ?, horaFinalizacion = ? WHERE id = ?';
         $update = $this->conexion->prepare($sql);
-        $arrData = array($this->strtitulo, $this->strdescripcion, $this->strhoraInicio, $id);
+        $arrData = array($this->strclase, $this->strdescripcion, $this->strhoraInicio, $this->strhoraFinalizacion,$id);
         $resInsert = $update->execute($arrData);
         return $resInsert;
 

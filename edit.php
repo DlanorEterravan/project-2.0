@@ -21,16 +21,24 @@ if(isset($_POST['editar_datos'])){
             <div class="card card-body">
                 <form action="edit.php?id=<?php echo $_GET['id']; ?>" method="POST">
                     <div class="form-group">
-                        <input type="text" name ='titulo' class="form-control" placeholder="Inserte nuevo titulo" autofocus>
+                        <label for="clase">Clase</label>
+                        <input type="text" name ='clase' class="form-control" placeholder="Inserte clase" autofocus>
                     </div>
 
                     <div class="form-group">
-                        <textarea name="descripcion" class="form-control" rows="5" cols="40" placeholder="Inserte nueva descripcion"></textarea>
+                        <label for="bootcamp">Bootcamp</label>
+                        <textarea name="bootcamp" class="form-control" rows="5" cols="40" placeholder="Inserte nueva bootcamp"></textarea>
                     </div>
 
                     <div class="form-group">
-                        <input type="time" name="time" class="form-control" >
+                        <label for="time1">Hora Inicio</label>
+                        <input type="time" name="time1" class="form-control" >
                     </div>
+                    <div class="form-group">
+                        <label for="time2">Hora Finalización</label>
+                        <input type="time" name="time2" class="form-control" >
+                    </div>
+
 
                     <input type="submit" name="editar_datos" class="btn btn-success btn-block">
                 </form>

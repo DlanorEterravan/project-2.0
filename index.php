@@ -9,7 +9,7 @@ include_once 'includes/header.php';
 ?>
 
 <div class="container d-flex justify-content-center mt-3">
-    <strong><h1 class="color1">ESTAS SON TUS TAREAS PENDIENTES.</h1></strong>
+    <strong><h1 class="color1">ESTAS SON TUS CLASES A IMPARTIR</h1></strong>
 </div>
 
 <!-- IGNORAR-->
@@ -55,17 +55,22 @@ include_once 'includes/header.php';
 
                     <div class="form-group">
                         
-                        <input type="text" class="form-control" name="titulo" placeholder="Inserte titulo">
+                        <input type="text" class="form-control" name="clase" placeholder="Inserte titulo">
                     </div><!-- fin de la clase form-group -->
 
                     <div class="form-group">
-                        
-                        <textarea name="description" class="form-control" cols="40" placeholder="Inserte Descripcion"></textarea>
+                        <label for="bootcamp">Bootcamp</label>
+                        <textarea name="bootcamp" class="form-control" cols="40" placeholder="por ejemplo fsj1"></textarea>
                     </div><!-- fin de la clase form-group -->
 
                     <div class="form-group">
-                        
-                        <input type="time" name="time" class="form-control"">
+                        <label for="time1">Hora Inicio</label>
+                        <input type="time" name="time1" class="form-control"">
+                    </div><!-- fin de la clase form-group -->
+
+                    <div class="form-group">
+                        <label for="time2">Hora Finalización</label>
+                        <input type="time" name="time2" class="form-control"">
                     </div><!-- fin de la clase form-group -->
 
                     <input type="submit" class="btn btn-success btn-block" name="guardar_datos" value="Guardar datos">
@@ -84,18 +89,20 @@ include_once 'includes/header.php';
             <table class="table table-dark">
                 <thead>
                     <tr>
-                        <td>Titulo</td>
-                        <td>Descripcion</td>
+                        <td>Clase</td>
+                        <td>Bootcamp</td>
                         <td>Hora de Inicio</td>
+                        <td>Hora Finalización</td>
                         <td>Accion</td>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($tareas as $tarea) {?>
                         <tr>
-                            <td><?php echo $tarea['titulo']; ?></td>
-                            <td><?php echo $tarea['descripcion']; ?></td>
+                            <td><?php echo $tarea['clase']; ?></td>
+                            <td><?php echo $tarea['bootcamp']; ?></td>
                             <td><?php echo date("g:i a",strtotime($tarea['horaInicio'])); ?></td>
+                            <td><?php echo date("g:i a",strtotime($tarea['horaFinalizacion'])); ?></td>
                             <td>
                                 <a href="edit.php?id=<?php echo $tarea['id'] ?>" class="btn btn-secondary">
                                     <i class="fas fa-marker"></i>
