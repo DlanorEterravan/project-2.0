@@ -2,7 +2,15 @@
 include_once '<Setings/autoload.php';
 
 /* Heredamos la clase conexion */
-class tasks extends conexion{
+
+interface tareas{
+    public function showTask();
+    public function updateTask(string $clase, string $bootcamp, string $horaInicio, string $horaFinalizacion);
+    public function editTask(int $id, string $clase, string $bootcamp, string $horaInicio, string $horaFinalizacion);
+    public function deleteTask(int $id);
+    public function deleteAllTask();
+}
+class tasks extends conexion implements tareas{
     /* Defino las propiedades de mi clase, en este caso son el clase,
        la descripcion y la hora de incio */
     private $strclase;
@@ -25,18 +33,8 @@ class tasks extends conexion{
     }
 
     /* Funcion para validar las variables que se almacenaran en la tabla */
-    public function validarUpdate(){
-        if(isset($_POST['guardar_datos'])){
-            $obj = new tasks();
-            $clase = $_POST['clase'];
-            $bootcamp = $_POST['bootcamp'];
-            $horaInicio = $_POST['time1'];
-            $horaFinalizacion = $_POST['time2'];
-            $obj->updateTask($clase, $bootcamp, $horaInicio, $horaFinalizacion);
-        
-        }
-    }
 
+/****
     /* Funcion para Guardar datos en la tabla */
     public function updateTask(string $clase, string $bootcamp, string $horaInicio, string $horaFinalizacion){
         $this->strclase = $clase;
@@ -51,18 +49,7 @@ class tasks extends conexion{
     }
     
     /* Funcion para validar el Edit del usuario */
-    public function validarEdit(){          
-        if(isset($_POST['editar_datos'])){
-            $obj = new tasks();
-            $id = $_GET['id'];
-            $clase = $_POST['clase'];
-            $bootcamp = $_POST['bootcamp'];
-            $horaInicio = $_POST['time1'];
-            $horaFinalizacion = $_POST['time2'];
-            $obj->editTask($id, $clase, $bootcamp, $horaInicio, $horaFinalizacion);
-        
-        }
-    }
+
 
     /* Funcion para Editar tareas */
     public function editTask(int $id, string $clase, string $bootcamp, string $horaInicio, string $horaFinalizacion){
@@ -98,4 +85,5 @@ class tasks extends conexion{
         
     }
 }
+
 ?>

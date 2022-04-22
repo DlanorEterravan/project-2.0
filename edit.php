@@ -2,8 +2,8 @@
 include_once "includes/header.php";
 include_once 'Setings/autoload.php';
 
-$edit = new tasks();
-$edit->validarEdit();
+$edit = new validar();
+$edit->validar();
 
 if(isset($_GET['id'])){
     $id = $_GET['id'];

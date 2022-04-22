@@ -1,8 +1,8 @@
 <?php
 include_once 'Setings/autoload.php';
 
-$obj = new tasks;
-$obj->validarUpdate();
+$obj = new validar;
+$obj->validar();
 
 
 header('location: index.php');

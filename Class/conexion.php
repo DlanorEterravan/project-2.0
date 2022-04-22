@@ -1,6 +1,9 @@
 <?php
 /* La clase conexion lleva a cabo la conexion de mi base de datos*/
-class conexion{
+interface connect{
+    public function conectar();
+}
+class conexion implements connect{
     private $host = "localhost";
     private $user = "root";
     private $password = "";
